@@ -1,6 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <h1>Welcome to Your Vue.js Appp</h1>
+    Home
   </div>
 </template>
+
+<script>
+// import Home from './views/Home.vue'
+
+export default {
+ name: 'app',
+
+ components: {}
+
+}
+</script>
+
