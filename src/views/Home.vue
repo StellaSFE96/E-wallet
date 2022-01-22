@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-      <h1>E-WALLET</h1>
+      <h1 class="title">E-WALLET</h1>
   </div>
 </template>
 
@@ -10,6 +10,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  
+.home{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  margin-top: 10px;
+}
 
+h1{
+  font-family: 'Source Sans Pro', sans-serif;
+}
 </style>
