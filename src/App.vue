@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <Home v-if="currentView == 'home'" @viewChange="toggleView" />
-    <AddCard v-else @viewChange="toggleView" />
+    <AddCard v-else @viewChange="toggleView"/>
 
-    <nav>
+    <!-- <nav>
       <button class="addNew" @click="currentView = 'AddCard'">ADD A NEW CARD</button>
       <button class="addCard" @click="currentView = 'home'">HOME</button>
-    </nav> 
+    </nav>  -->
   </div>
 </template>
 
@@ -15,8 +15,7 @@ import Home from './views/Home.vue'
 import AddCard from './views/AddCard.vue'
 
 export default {
- name: 'app',
-
+ name: 'App',
  components: { 
    Home, AddCard
    },
@@ -40,25 +39,30 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 #app{
   background-color: rgb(216, 235, 253);
-  max-width: 414px;
-  max-height: 690px;
-  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+  width: 400px;
+  height: 700px;
+  margin-left: 50px;
+  
+}
+/* nav{
   display: flex;
   flex-direction: column;
-
-}
+  align-items: center;
+} */
 
 button{
-  width: 400px;
+  width: 380px;
   height: 50px;
   margin: 5px;
   border: none;
   border-radius: 8px;
   font-family: 'PT Mono', monospace;
-  background-color: rgb(244, 253, 253);
+  background-color: rgb(234, 255, 255);
 }
 
 h1{
