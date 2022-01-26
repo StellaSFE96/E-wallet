@@ -45,8 +45,9 @@ export default {
   margin-top: 20px;
   text-align: center;
   width: 400px;
-  height: 700px;
+  height: 870px;
   margin-left: 50px;
+  border-radius: 10px;
   
 }
 /* nav{
@@ -68,7 +69,7 @@ button{
 h1{
   font-family: 'Source Sans Pro', sans-serif;
 }
-input, button, h2, h3 {
+input, button, h2, h3, p {
   font-family: 'PT Mono', monospace;
 }
 

@@ -2,56 +2,59 @@
   <div id="form">
     <Card :card='user'/>
 
-    <form @submit.prevent="submit">
+    <form @submit.prevent="" >
         
         <label for="cardNumber">CARD NUMBER</label>
         <input type="number" 
-        name="card-number"
         class="card-number"
+        @keyup="collectUserData" 
         placeholder="XXXX XXXX XXXX XXXX"
-        v-model="user.cardNumber">
+        v-model.number="user.cardNumber">
 
         <label for="cardholderName">CARDHOLDER NAME</label>
         <input type="text"
-        name="cardholder-name"
         class="cardholder-name"
-        placeholder="Firstname Lastname"
+        @keyup="collectUserData"
+        placeholder="Firstname Lastname" 
         v-model="user.cardholderName">
  
-        <label for="validMonth">MONTH</label>
+            <label for="validMonth">MONTH</label>
             <select 
                 class="month"
+                @mouseleave="collectUserData"
+                v-model="user.validMonth"
                 name="month" 
-                id="month"
-                v-model="user.validMonth">
-                    <option v-for="month in months" :key="month" :value="month">
-                        {{month}}
+                id="months">
+                    <option v-for="n in 12" :key="n" :value="(n > 9) ? n : '0' + n">
+                        {{(n > 9) ? n : '0' + n}}
                     </option>
              </select>
 
-        <label for="validYear">YEAR</label>
+            <label for="validYear">YEAR</label>
             <select 
                 class="year"
+                @mouseleave="collectUserData"
+                v-model="user.validYear"
                 name="year" 
-                id="year"
-                v-model="user.validYear">
+                id="years">
                     <option value="22">22</option>
                     <option value="23">23</option>
                     <option value="24">24</option>
                     <option value="25">25</option>
-                    <option value="26">26</option>
             </select>
 
-        <label for="vendor">VENDOR</label>
-        <select class="vendor" name="vendor" v-model="user.vendor">
-            <option 
-            v-for="vendor in vendors"
-            :key="vendor.name"
-            :value="vendor">
-                {{vendor.name}}
-            </option>
+        <label for="vendorName">VENDOR</label>
+        <select 
+        class="vendor"
+        @mouseleave="collectUserData" 
+        v-model="user.vendor">
+            <option value="bitcoin">Bitcoin Inc</option>
+            <option value="blockchain">Blockchain Inc</option>
+            <option value="evil">Evil Corp</option>
+            <option value="ninja">Ninja Bank</option>
         </select>
-        <button class="add-btn" @click="$emit('viewChange'); ('sendUserData'); ">ADD CARD</button>
+        <button @click="sendUSerData">ADD CARD</button>
+        <button class="add-btn" @click="$emit('viewChange')">ADD CARD</button>
       </form>
   </div>
 </template>
@@ -63,47 +66,33 @@ export default {
   components: {Card},
   data() {
     return {
+        cardNumber: '',
+        name: '',
+        validMonth: '',
+        validYear: '',
+        vendor: '',
+
         user: {
         cardNumber: '',
-        cardholderName: '',
+        name: '',
         validMonth: '',
         validYear: '',
         vendor: '',
       },
-      months:['01','02','03','04','05','06','07','08','09','10','11','12',],
-      vendors: [
-          {
-          name: 'Bitcoin Inc',
-          backgroundColor: '#FFAE34',
-          fontColor: 'black',
-          logo: require('../assets/bitcoin.svg'),
-        },
-        {
-          name: 'Ninja Bank',
-          backgroundColor: '#333333',
-          fontColor: 'white',
-          logo: require('../assets/ninja.svg'),
-        },
-        {
-          name: 'Block Chain Inc',
-          backgroundColor: '#8B58F9',
-          fontColor: 'white',
-          logo: require('../assets/blockchain.svg'),
-        },
-        {
-          name: 'Evil Corp',
-          backgroundColor: '#F33355',
-          fontColor: 'white',
-          logo: require('../assets/evil.svg'),
-        },
-      ]
     }
   },
   methods: {
     submit() {
       this.$emit('viewChange');
     },
-    sendUserData(){
+    collectUserData(){
+        this.cardNumber = this.user.cardNumber
+        this.name = this.user.name
+        this.validMonth = this.user.validMonth
+        this.validYear = this.user.validYear
+        this.vendor = this.user.vendor
+    },
+    sendUSerData(){
         this.$emit('toAddCard', this.user)
     }
   },
@@ -139,38 +128,29 @@ input {
 
 .month {
   height: 56px;
-  width: 190px;
+  width: 185px;
   position: relative;
   top: 20px;
-  right: 100px;
-  border-radius: 8px;
-  border-color: rgb(123, 197, 219);
-   font-family: 'PT Mono', monospace;
+  right: 132px;
 }
 
 .year {
   height: 56px;
-  width: 190px;
+  width: 180px;
   position: relative;
-  bottom: 36px;
+  bottom: 53px;
   left: 120px;
-  border-radius: 8px;
-  border-color: rgb(123, 197, 219);
-   font-family: 'PT Mono', monospace;
 }
 .vendor {
   height: 56px;
-  width: 380px;
+  width: 375px;
   position: relative;
-  bottom: 8px;
-  border-radius: 8px;
-  border-color: rgb(123, 197, 219);
-   font-family: 'PT Mono', monospace;
+  bottom: 30px;
 }
 .add-btn {
   position: relative;
   bottom: 25px;
-  top: 20px;
+  right: 5px;
 }
 
 form{
@@ -190,19 +170,13 @@ form{
     }
     label:nth-of-type(3){
         position: relative;
-        right: 63px;
-        bottom: 20px;
+        right: 56px;
+        bottom: 25px;
     }
     label:nth-of-type(4){
         position: relative;
-        right: 96px;
-        bottom: 20px;
-    }
-    label:nth-of-type(5){
-        position: relative;
         right: 262px;
-        top: 10px;
-      
+        bottom: 5px;
     }
 }
 </style>

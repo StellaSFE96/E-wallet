@@ -2,51 +2,60 @@
   <div class="card">
       <article class="cardTemplate">
           <div class="card-top">
-              <div class="left-corner">
+              <div class="icons">
                  <img src="../assets/wifi.svg" alt="wifi icon">
                  <img src="../assets/chip.svg" alt="chip icon">
               </div>
 
-              <div class="right-corner">
-                 <img src="../assets/bitcoin.svg" alt="bitcoin logo">
+              <div class="logo">
+                 <img src="../assets/ninja.svg" alt="ninja logo">
               </div>
           </div>
 
           <div class="middle">
-                 <!-- <p>CARD NUMBER</p> -->
-                 <P>XXXX XXXX XXXX XXXX</P>
+                <p v-if="card.cardNumber">{{ card.cardNumber}}</p>
+                 <P v-else>XXXX XXXX XXXX XXXX</P>
           </div>
 
           <div class="card-bottom">
               <div class="b-left-corner">
                   <p>CARDHOLDER NAME</p>
-                  <P>JANE JOHNSSON</P>
+                  <p v-if="card.cardholderName">{{ card.cardholderName}}</p>
+                  <P v-else>---- -------</P>
               </div>
 
               <div class="b-right-corner">
                   <p>VALID THRU</p>
                   <div class="date">
                       <!-- Month -->
-                      <!-- <p>----</p> -->
-                      <p>MM</p>
+                      <p v-if="card.validMonth"> {{card.validMonth}}</p>
+                      <p v-else>MM</p>
                       <P>/</P>
                       <!-- year -->
-                      <!-- <p>----</p> -->
-                      <p>YY</p>
+                     <p v-if="card.validYear"> {{card.validYear}}</p>
+                      <p v-else>YY</p>
                   </div>
               </div>
           </div>
-          <Form />
+          
       </article>
   </div>
 </template>
 
 <script>
-import Form from '../components/Form.vue';
+// import Form from '../components/Form.vue';
 export default {
   name: 'Card',
-  components: {Form},
-  props: ['sendFormDataToCard'],
+  props: ['card'
+  ],
+  data(){
+      return{
+          wifiIcon: require('../assets/wifi.svg'),
+          chipIcon: require('../assets/wifi.svg'),
+          whiteWifiIcon: require('../assets/wifi.svg'),
+          vendorLogo: require('../assets/wifi.svg'),
+      }
+  }
 };
 </script>
 
@@ -70,7 +79,7 @@ export default {
     margin: 5px;
 }
 
-.left-corner{
+.icons{
     display: flex;
     flex-direction: column;
 }
@@ -90,15 +99,14 @@ export default {
 .b-left-corner{
     p:first-of-type{
         font-size: 12px;
-        margin-bottom: 5px;
-        margin-right: 27px;
+        margin-right: 40px;
+        position: absolute;
     }
     p:last-of-type{
         font-size: 16px;
-        margin-bottom: 50px;
         letter-spacing: 2px;
         position: relative;
-        bottom: 5px;
+        top: 22px;
     }
     padding-left: 15px;
 }
@@ -109,7 +117,7 @@ export default {
     font-size: 13px;
 
     p{
-        margin-right: 15px;
+        margin-right: 14px;
         
     }
 
@@ -123,7 +131,7 @@ export default {
         margin-right: 15px;
 
         p{
-            margin: 15px 2px;
+            margin: 15px 3px;
         }
 
     }

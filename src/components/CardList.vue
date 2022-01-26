@@ -1,6 +1,8 @@
 <template>
   <div id="card-list">
-    <Card />
+    <!-- <Card v-if="!savedCardsArray" :user="user" />
+    <Card :user="user" v-for="user in savedCardsArray" :key="user" /> -->
+    <Card :card="card" v-for="card in cards" :key="card.vendor"/>
   </div>
 </template>
 
@@ -9,9 +11,10 @@ import Card from './Card.vue';
 export default {
   name: 'CardList',
   components: { Card },
+  props: ['card', 'cards'],
   data() {
     return {
-      
+    
     };
   },
 };
@@ -20,7 +23,6 @@ export default {
 <style>
 #card-list {
   height: 337px;
-  width: 382px;
-  background-color: tomato;
+  width: 380px;
 }
 </style>
