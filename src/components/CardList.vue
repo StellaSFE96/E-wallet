@@ -11,13 +11,13 @@ import Card from './Card.vue';
 export default {
   name: 'CardList',
   components: { Card },
-  props: ['card', 'cards'],
   data() {
     return {
     
-    };
+    }
   },
-};
+  props: ['card', 'cards'],
+}
 </script>
 
 <style>

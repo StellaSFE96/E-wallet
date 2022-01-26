@@ -24,6 +24,7 @@
                 name="month" 
                 id="month"
                 v-model="user.validMonth">
+                 <option value="" disabled selected>Select</option>
                     <option v-for="month in months" :key="month" :value="month">
                         {{month}}
                     </option>
@@ -35,6 +36,7 @@
                 name="year" 
                 id="year"
                 v-model="user.validYear">
+                    <option value="" disabled selected>Select</option>
                     <option value="22">22</option>
                     <option value="23">23</option>
                     <option value="24">24</option>
@@ -44,12 +46,11 @@
 
         <label for="vendor">VENDOR</label>
         <select class="vendor" name="vendor" v-model="user.vendor">
-            <option 
-            v-for="vendor in vendors"
-            :key="vendor.name"
-            :value="vendor">
-                {{vendor.name}}
-            </option>
+            <option value="" disabled selected>Select</option>
+            <option value="bitcoin"> Bitcoing Inc</option>
+            <option value="evil"> Evil Corp</option>
+            <option value="ninja"> Ninja Bank</option>
+            <option value="blockchain"> Blockchain Inc</option>
         </select>
         <button class="add-btn" @click="$emit('viewChange'); ('sendUserData'); ">ADD CARD</button>
       </form>
@@ -70,34 +71,8 @@ export default {
         validYear: '',
         vendor: '',
       },
-      months:['01','02','03','04','05','06','07','08','09','10','11','12',],
-      vendors: [
-          {
-          name: 'Bitcoin Inc',
-          backgroundColor: '#FFAE34',
-          fontColor: 'black',
-          logo: require('../assets/bitcoin.svg'),
-        },
-        {
-          name: 'Ninja Bank',
-          backgroundColor: '#333333',
-          fontColor: 'white',
-          logo: require('../assets/ninja.svg'),
-        },
-        {
-          name: 'Block Chain Inc',
-          backgroundColor: '#8B58F9',
-          fontColor: 'white',
-          logo: require('../assets/blockchain.svg'),
-        },
-        {
-          name: 'Evil Corp',
-          backgroundColor: '#F33355',
-          fontColor: 'white',
-          logo: require('../assets/evil.svg'),
-        },
-      ]
-    }
+      months:['01','02','03','04','05','06','07','08','09','10','11','12'],
+    };
   },
   methods: {
     submit() {
@@ -175,6 +150,13 @@ input {
 
 form{
     margin-top: 20px;
+}
+
+select{
+    color: rgb(77, 75, 75);
+    font-size: 12px;
+    font-family: 'PT Mono', monospace;
+    letter-spacing: 1px;
 }
 
 #form{

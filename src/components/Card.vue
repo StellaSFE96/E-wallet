@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-      <article class="cardTemplate">
+      <article class="cardTemplate" :style="{background: templateBackground, color: templateTextColor}">
           <div class="card-top">
               <div class="icons">
                  <img src="../assets/wifi.svg" alt="wifi icon">
@@ -8,7 +8,7 @@
               </div>
 
               <div class="logo">
-                 <img src="../assets/ninja.svg" alt="ninja logo">
+                 <img v-if="card.vendor" :src="require(`../assets/${card.vendor}.svg`)" alt="vendor">
               </div>
           </div>
 
@@ -37,7 +37,6 @@
                   </div>
               </div>
           </div>
-          
       </article>
   </div>
 </template>
@@ -46,22 +45,47 @@
 // import Form from '../components/Form.vue';
 export default {
   name: 'Card',
-  props: ['card'
-  ],
+  props: ['card'],
   data(){
       return{
-          wifiIcon: require('../assets/wifi.svg'),
-          chipIcon: require('../assets/wifi.svg'),
-          whiteWifiIcon: require('../assets/wifi.svg'),
-          vendorLogo: require('../assets/wifi.svg'),
-      }
+         
+    }
+  },
+  computed: {
+
+        templateTextColor(){
+        if(this.card.vendor === "bitcoin"){
+            return "black";
+        }
+        else {
+            return "white";
+        }
+    },
+
+      templateBackground() {
+        if(this.card.vendor === "bitcoin"){
+            return "#FFAE34";
+        }
+        else if(this.card.vendor === "evil"){
+            return "#F33355";
+        }
+        else if(this.card.vendor === "ninja"){
+            return "#333333";
+        }
+        else if(this.card.vendor === "blockchain"){
+            return "#8B58F9";
+        }
+        else {
+            return "#d0d0d0";
+        }
+    },
   }
 };
 </script>
 
 <style lang="scss" scoped>
 
-.card {
+.cardTemplate {
   height: 240px;
   width: 380px;
   background-color: #d0d0d0;
@@ -82,18 +106,25 @@ export default {
 .icons{
     display: flex;
     flex-direction: column;
+
+    img:last-of-type{
+        margin-left: 1px;
+    }
 }
 
 .middle{
     font-size: 19px;
     letter-spacing: 4px;
     word-spacing: 11px;
+    position: relative;
+    bottom: 8px;
 }
 
 .card-bottom{
     display: flex;
     justify-content: space-between;
-   
+    position: relative;
+    bottom: 10px;
 }
 
 .b-left-corner{
@@ -106,7 +137,7 @@ export default {
         font-size: 16px;
         letter-spacing: 2px;
         position: relative;
-        top: 22px;
+        top: 18px;
     }
     padding-left: 15px;
 }
