@@ -2,20 +2,22 @@
   <div id="form">
     <Card :card='user'/>
 
-    <form @submit.prevent="submit">
+    <form @submit.prevent="transportData">
         
         <label for="cardNumber">CARD NUMBER</label>
-        <input type="number" 
-        name="card-number"
+        <input required
+        type="text"
         class="card-number"
+        maxlength="19"
         placeholder="XXXX XXXX XXXX XXXX"
+        onkeypress="return /[0-9, ' ']/i.test(event.key)"
         v-model="user.cardNumber">
 
         <label for="cardholderName">CARDHOLDER NAME</label>
-        <input type="text"
-        name="cardholder-name"
+        <input required type="text"
         class="cardholder-name"
         placeholder="Firstname Lastname"
+        onkeypress="return /[A-Z, ' ']/i.test(event.key)"
         v-model="user.cardholderName">
  
         <label for="validMonth">MONTH</label>
@@ -52,9 +54,10 @@
             <option value="ninja"> Ninja Bank</option>
             <option value="blockchain"> Blockchain Inc</option>
         </select>
-        <button class="add-btn" @click="$emit('viewChange'); ('sendUserData'); ">ADD CARD</button>
+        <button class="add-btn">ADD CARD</button>
       </form>
   </div>
+   <!-- change -->
 </template>
 
 <script>
@@ -75,10 +78,7 @@ export default {
     };
   },
   methods: {
-    submit() {
-      this.$emit('viewChange');
-    },
-    sendUserData(){
+    transportData(){
         this.$emit('toAddCard', this.user)
     }
   },

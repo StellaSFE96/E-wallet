@@ -3,8 +3,12 @@
       <h1 class="title">E-WALLET</h1>
       <p class="active">ACTIVE CARD</p>
 
-       <div class="card-list">
-         <CardList />
+       <div class="active-card">
+         <Card v-if="activeCard" :card="activeCard"/>
+       </div>
+
+       <div  class="active-card-list">
+         <Card v-for="object in cards" :key="object.cardNumber" @click="activeCard = object" :card="object" />
        </div>
 
        <div>
@@ -14,18 +18,19 @@
 </template>
 
 <script>
-import CardList from '../components/CardList.vue'
+import Card from '../components/Card.vue'
 export default {
   name: 'Home',
-  components:  { CardList
-  },
+  components:  { Card },
+  props: ['card', 'cards'],
   data(){
     return{
-
-
-      
-      // currentView: 'AddCard'
-    }
+      activeCard: null,
+    }},
+    methods: {
+    changeView(){
+       this.$emit("sendToAddCard")
+    }  
   }
 }
 </script>
@@ -40,12 +45,19 @@ export default {
   margin-top: 10px;
 }
 
-h1{
+.title{
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-.home p{
-  color: #383838;
+.active{
+  color: #706c6c;
   font-family: 'PT Mono', monospace;
+}
+
+.active-card-list{
+  display: grid;
+  grid-auto-rows: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 13rem;
 }
 </style>

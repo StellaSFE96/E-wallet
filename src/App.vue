@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <Home v-if="currentView == 'home'" @viewChange="toggleView" />
-    <AddCard v-else @viewChange="toggleView"/>
+    <Home v-if="currentView == 'home'" 
+    @viewChange="toggleView" :card="card" :cards="cards" />
+    <AddCard v-else @viewChange="toggleView"
+    @toApp="addCardPayload"
+    />
 
-    <!-- <nav>
-      <button class="addNew" @click="currentView = 'AddCard'">ADD A NEW CARD</button>
-      <button class="addCard" @click="currentView = 'home'">HOME</button>
-    </nav>  -->
   </div>
 </template>
 
@@ -16,14 +15,36 @@ import AddCard from './views/AddCard.vue'
 
 export default {
  name: 'App',
- components: { 
-   Home, AddCard
-   },
+ components: { Home, AddCard },
 
  data(){
    return{
-     currentView : 'home',
-    //  isHidden: false
+    currentView : 'home',
+    card: " ",
+    cards: [
+      {
+        vendorName: "blockchain",
+        cardNumber: "8282828282828282",
+        cardholderName: "Peter Griffin",
+        validMonth: "02",
+        validYear: "22",
+      },
+      {
+        vendorName: "evil",
+        cardNumber: "0000000000000000",
+        cardholderName: "Pickle Rick",
+        validMonth: "04",
+        validYear: "24",
+      },
+      {
+        vendorName: "ninja",
+        cardNumber: "2222222222222222",
+        cardholderName: "Moon cake",
+        validMonth: "06",
+        validYear: "26",
+      },
+
+    ],
    }
  },
 
@@ -33,8 +54,17 @@ export default {
          this.currentView = 'addCard';
       } else {
         this.currentView = 'home';
-    }
-   }
+     }
+   },
+   addCardPayload(dataPayload){
+      this.card = dataPayload
+      this.cards.push(dataPayload)
+      this.currentView = "Home"
+    },
+    addNewCardToList(){
+      this.cards.push(this.card)
+      localStorage.setItem("cards", JSON.stringify(this.cards))
+    },
   }
 };
 </script>

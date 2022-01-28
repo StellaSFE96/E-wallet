@@ -1,9 +1,10 @@
 <template>
   <div class="card">
-      <article class="cardTemplate" :style="{background: templateBackground, color: templateTextColor}">
+      <article class="cardTemplate" :style="{background: templateBackground, color: templateTextColor}" 
+      @click="$emit('click')">
           <div class="card-top">
               <div class="icons">
-                 <img src="../assets/wifi.svg" alt="wifi icon">
+                 <img src="../assets/wifi.svg" alt="wifi logo">
                  <img src="../assets/chip.svg" alt="chip icon">
               </div>
 
@@ -13,7 +14,7 @@
           </div>
 
           <div class="middle">
-                <p v-if="card.cardNumber">{{ card.cardNumber}}</p>
+                <p v-if="numberTemplate">{{ numberTemplate}}</p>
                  <P v-else>XXXX XXXX XXXX XXXX</P>
           </div>
 
@@ -39,6 +40,7 @@
           </div>
       </article>
   </div>
+   <!-- change -->
 </template>
 
 <script>
@@ -79,8 +81,22 @@ export default {
             return "#d0d0d0";
         }
     },
+
+    numberTemplate(){
+        let space= ''
+        for(let i=0; i < this.card.cardNumber.length; i++){
+                if(i % 4 == 0){
+                    space +=" ";
+                }
+                space +=this.card.cardNumber[i]
+                if(space.length>19){
+                    return space
+                }
+            }
+        return space 
+    },
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -116,28 +132,27 @@ export default {
     font-size: 19px;
     letter-spacing: 4px;
     word-spacing: 11px;
-    position: relative;
-    bottom: 8px;
 }
 
 .card-bottom{
     display: flex;
     justify-content: space-between;
-    position: relative;
-    bottom: 10px;
+    align-content: flex-start;
+
+    p{
+        margin-right: 20px;
+        margin-bottom: -14px;
+    }
 }
 
 .b-left-corner{
     p:first-of-type{
         font-size: 12px;
         margin-right: 40px;
-        position: absolute;
     }
     p:last-of-type{
         font-size: 16px;
         letter-spacing: 2px;
-        position: relative;
-        top: 18px;
     }
     padding-left: 15px;
 }
@@ -149,22 +164,15 @@ export default {
 
     p{
         margin-right: 14px;
-        
+        align-self: baseline;
     }
 
     div{
         display: flex;
         justify-content: flex-end;
         flex-direction: row;
-        position: relative;
-        bottom: 20px;
         font-size: 15px;
         margin-right: 15px;
-
-        p{
-            margin: 15px 3px;
-        }
-
     }
 }
 

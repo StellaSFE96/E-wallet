@@ -12,6 +12,11 @@
     //     v-model="user.ccv"
     //   />
 
+    //  <nav>
+    // <button class="addNew" @click="currentView = 'AddCard'">ADD A NEW CARD</button>
+    // <button class="addCard" @click="currentView = 'home'">HOME</button>
+    //  </nav> 
+
     // vendors: [
     //     {
     //     value: 'bitcoin',

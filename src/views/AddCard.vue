@@ -2,8 +2,9 @@
   <div id="add-card">
     <h1>ADD A NEW <span>BANK CARD</span></h1>
     <h2>NEW CARD</h2>
-    <Form @viewChange="$emit('viewChange');" @toAddCard="recievingData" />
+    <Form @viewChange="$emit('viewChange');" @toAddCard="formPayload" />
   </div>
+   <!-- change now-->
 </template>
 
 <script>
@@ -11,24 +12,16 @@ import Form from '../components/Form.vue';
 
 export default {
   name: 'AddCard',
-  components: { Form
-  },
-  props: [''],
+  components: { Form },
   data(){
     return{
-      card: {
-        cardNumber: '',
-        cardholderName: '',
-        validMonth: '',
-        validYear: '',
-        vendor: ''
-      },
+      card: [],
     }
   },
   methods: {
-    recievingData(payload){
-      this.card = payload
-      this.$emit('toApp', this.card)
+    formPayload(dataPayload){
+          this.card = dataPayload
+          this.$emit('toApp', this.card)
     }
   },
 };
