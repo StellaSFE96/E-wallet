@@ -54,7 +54,7 @@
             <option value="ninja"> Ninja Bank</option>
             <option value="blockchain"> Blockchain Inc</option>
         </select>
-        <button class="add-btn">ADD CARD</button>
+        <button class="add-btn" @click="transportData">ADD CARD</button>
       </form>
   </div>
    <!-- change -->
@@ -80,6 +80,7 @@ export default {
   methods: {
     transportData(){
         this.$emit('toAddCard', this.user)
+        this.$emit('viewChange');
     }
   },
 };

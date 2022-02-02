@@ -20,30 +20,36 @@ export default {
  data(){
    return{
     currentView : 'home',
-    card: " ",
+    card: [],
     cards: [
       {
-        vendorName: "blockchain",
+        vendor: "ninja",
         cardNumber: "8282828282828282",
         cardholderName: "Peter Griffin",
         validMonth: "02",
         validYear: "22",
       },
       {
-        vendorName: "evil",
+        vendor: "blockchain",
         cardNumber: "0000000000000000",
         cardholderName: "Pickle Rick",
         validMonth: "04",
         validYear: "24",
       },
       {
-        vendorName: "ninja",
+        vendor: "evil",
+        cardNumber: "6666666666666666",
+        cardholderName: "Lucifer Morningstar",
+        validMonth: "06",
+        validYear: "26",
+      },
+      {
+        vendor: "bitcoin",
         cardNumber: "2222222222222222",
         cardholderName: "Moon cake",
         validMonth: "06",
         validYear: "26",
       },
-
     ],
    }
  },
@@ -65,7 +71,14 @@ export default {
       this.cards.push(this.card)
       localStorage.setItem("cards", JSON.stringify(this.cards))
     },
-  }
+  },
+
+  mounted(){
+    let saveCard = JSON.parse(localStorage.getItem('cards'))
+    if(saveCard){
+      this.cards = saveCard
+    }
+  },
 };
 </script>
 
@@ -75,21 +88,14 @@ export default {
   margin-top: 20px;
   text-align: center;
   width: 400px;
-  height: 870px;
   margin-left: 50px;
   border-radius: 10px;
-  
 }
-/* nav{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
 
 button{
   width: 380px;
   height: 50px;
-  margin: 5px;
+  margin-bottom: 20px;
   border: none;
   border-radius: 8px;
   font-family: 'PT Mono', monospace;
@@ -99,11 +105,13 @@ button{
 h1{
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 input, button, h2, h3, p {
   font-family: 'PT Mono', monospace;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+
 </style>
 

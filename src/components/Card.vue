@@ -1,10 +1,12 @@
 <template>
   <div class="card">
-      <article class="cardTemplate" :style="{background: templateBackground, color: templateTextColor}" 
-      @click="$emit('click')">
+      <article class="cardTemplate" :class="card.vendor" 
+      :style="{background: templateBackground, color: templateTextColor}"
+      @click="$emit('show')">
           <div class="card-top">
               <div class="icons">
-                 <img src="../assets/wifi.svg" alt="wifi logo">
+                 <img v-if="card.vendor === 'bitcoin'" src="../assets/wifi.svg" alt="wifi icon">
+                 <img v-else src="../assets/wifi_white.svg" alt="wifi icon">
                  <img src="../assets/chip.svg" alt="chip icon">
               </div>
 
@@ -40,17 +42,14 @@
           </div>
       </article>
   </div>
-   <!-- change -->
 </template>
 
 <script>
-// import Form from '../components/Form.vue';
 export default {
   name: 'Card',
   props: ['card'],
   data(){
       return{
-         
     }
   },
   computed: {

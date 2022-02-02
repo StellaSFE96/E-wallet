@@ -44,3 +44,32 @@
     //     logo: require('../assets/evil.svg'),
     //   },
     // ],
+
+    
+
+    //     templateTextColor(){
+    //     if(this.card.vendor === "bitcoin"){
+    //         return "black";
+    //     }
+    //     else {
+    //         return "white";
+    //     }
+    // },
+
+    //   templateBackground() {
+    //     if(this.card.vendor === "bitcoin"){
+    //         return "#FFAE34";
+    //     }
+    //     else if(this.card.vendor === "evil"){
+    //         return "#F33355";
+    //     }
+    //     else if(this.card.vendor === "ninja"){
+    //         return "#333333";
+    //     }
+    //     else if(this.card.vendor === "blockchain"){
+    //         return "#8B58F9";
+    //     }
+    //     else {
+    //         return "#d0d0d0";
+    //     }
+    // },

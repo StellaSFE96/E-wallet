@@ -8,7 +8,7 @@
        </div>
 
        <div  class="active-card-list">
-         <Card v-for="object in cards" :key="object.cardNumber" @click="activeCard = object" :card="object" />
+         <Card v-for="object in cards" :key="object.cardNumber" @show="activeCard = object" :card="object" />
        </div>
 
        <div>
