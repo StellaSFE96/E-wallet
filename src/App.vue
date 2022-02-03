@@ -53,6 +53,11 @@ export default {
     ],
    }
  },
+ watch: {
+   cards(newCards){
+     localStorage.cards = JSON.stringify(newCards);
+   }
+ },
 
  methods: {
    toggleView() {
@@ -67,16 +72,11 @@ export default {
       this.cards.push(dataPayload)
       this.currentView = "Home"
     },
-    addNewCardToList(){
-      this.cards.push(this.card)
-      localStorage.setItem("cards", JSON.stringify(this.cards))
-    },
   },
 
   mounted(){
-    let saveCard = JSON.parse(localStorage.getItem('cards'))
-    if(saveCard){
-      this.cards = saveCard
+    if (localStorage.cards){
+      this.cards = JSON.parse(localStorage.cards);
     }
   },
 };
