@@ -88,7 +88,7 @@ export default {
   margin-top: 20px;
   text-align: center;
   width: 400px;
-  margin-left: 50px;
+  margin: auto;
   border-radius: 10px;
 }
 
